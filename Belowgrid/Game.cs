@@ -1,36 +1,25 @@
 ﻿using Belowgrid.Entities;
 using Belowgrid.Utils;
-using Belowgrid.UI;
+using Belowgrid.Map;
+using Belowgrid.Map.Room;
+using Belowgrid.GameState;
 
 namespace Belowgrid
 {
     class Game
     {
-        private GameState _state = GameState.MainMenu;
-        private Player _player;
+        private GameStateManager _stateManager = new GameStateManager();
 
-
-        private void InitializeState(GameState state)
-        {
-            _state = state;
-            if (state == GameState.MainMenu)
-            {
-                Printer.PrintLine("--- BelowGrid ---");
-            }
-            else if (state == GameState.Game)
-            {
-                Printer.PrintLine("Game", ThemeColor.Success);
-            }
-        }
         public void Run()
         {
-            InitializeState(GameState.Game);
+            _stateManager.ChangeState(new InGameState(_stateManager));
+
+            while (true)
+            {
+                _stateManager.Update();
+                _stateManager.Render();
+            }
         }
     }
-
-    enum GameState
-    {
-        MainMenu,
-        Game
-    }
 }
+
