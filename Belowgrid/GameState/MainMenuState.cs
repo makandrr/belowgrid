@@ -1,4 +1,5 @@
-﻿using Belowgrid.Utils;
+﻿using Belowgrid.Input;
+using Belowgrid.Utils;
 
 namespace Belowgrid.GameState
 {
@@ -19,7 +20,7 @@ namespace Belowgrid.GameState
 
         public void Render() { }
 
-        public void Update() { }
+        public void Update(InputManager input) { }
 
         public void Exit() { }
     }

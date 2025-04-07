@@ -1,4 +1,6 @@
-﻿namespace Belowgrid.GameState
+﻿using Belowgrid.Input;
+
+namespace Belowgrid.GameState
 {
     public class GameStateManager
     {
@@ -11,9 +13,9 @@
             _currentState.Enter();
         }
 
-        public void Update()
+        public void Update(InputManager input)
         {
-            _currentState?.Update();
+            _currentState?.Update(input);
         }
 
         public void Render()

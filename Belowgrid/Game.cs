@@ -1,14 +1,12 @@
-﻿using Belowgrid.Entities;
-using Belowgrid.Utils;
-using Belowgrid.Map;
-using Belowgrid.Map.Room;
-using Belowgrid.GameState;
+﻿using Belowgrid.GameState;
+using Belowgrid.Input;
 
 namespace Belowgrid
 {
     class Game
     {
         private GameStateManager _stateManager = new GameStateManager();
+        private InputManager _input = new InputManager();
 
         public void Run()
         {
@@ -16,8 +14,12 @@ namespace Belowgrid
 
             while (true)
             {
-                _stateManager.Update();
+                _input.PollInput();
+
+                _stateManager.Update(_input);
                 _stateManager.Render();
+
+                Thread.Sleep(66);
             }
         }
     }

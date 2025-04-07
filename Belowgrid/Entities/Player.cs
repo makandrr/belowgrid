@@ -1,4 +1,6 @@
-﻿namespace Belowgrid.Entities
+﻿using Belowgrid.Map;
+
+namespace Belowgrid.Entities
 {
     class Player : Entity
     {
