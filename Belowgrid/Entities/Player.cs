@@ -6,7 +6,7 @@ namespace Belowgrid.Entities
     {
         public override char GetSymbol()
         {
-            return '▀';
+            return '*';
         }
 
         public Player(int x, int y): base(x, y) { }

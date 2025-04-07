@@ -23,6 +23,11 @@ namespace Belowgrid.Entities
             Behavior?.Act(this, gameMap);
         }
 
+        public virtual void Interact(Entity source, GameMap map)
+        {
+
+        }
+
         public Entity(int x, int y)
         {
             X = x;

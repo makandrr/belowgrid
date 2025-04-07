@@ -24,6 +24,12 @@ namespace Belowgrid.GameState
         }
 
         public void Enter() {
+            var chest = new Chest(3, 3);
+            _map.Spawn(chest, 3, 3);
+            var chest2 = new Chest(6, 6);
+            _map.Spawn(chest2, 6, 6);
+            var chest3 = new Chest(8, 2);
+            _map.Spawn(chest3, 8, 2);
             Render();
         }
 

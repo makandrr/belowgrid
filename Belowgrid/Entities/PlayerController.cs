@@ -11,6 +11,29 @@ namespace Belowgrid.Entities
             _lastKey = key;
         }
 
+        private void TryInteract(Entity self, GameMap map)
+        {
+            var room = map.GetCurrentRoom();
+            if (room == null) return;
+
+            int x = self.X;
+            int y = self.Y;
+
+            (int dx, int dy)[] directions = { (-1, 0), (1, 0), (0, -1), (0, 1) };
+
+            foreach (var (dx, dy) in directions)
+            {
+                int nx = x + dx;
+                int ny = y + dy;
+                var target = room.GetEntity(nx, ny);
+                if (target != null)
+                {
+                    target.Interact(self, map);
+                    return;
+                }
+            }
+        }
+
         public void Act(Entity self, GameMap map)
         {
             if (_lastKey == null) return;
@@ -23,6 +46,10 @@ namespace Belowgrid.Entities
                 case ConsoleKey.S: dx = 1; break;
                 case ConsoleKey.A: dy = -1; break;
                 case ConsoleKey.D: dy = 1; break;
+                case ConsoleKey.E:
+                    TryInteract(self, map);
+                    _lastKey = null;
+                    return;
             }
 
             _lastKey = null;
